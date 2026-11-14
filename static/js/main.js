@@ -57,7 +57,7 @@ const SETS = {
     tabs: scenes(3),
     rows: [
       [['condition', 'Blocks-World Condition'], ['real', 'Real Video']],
-      [['magicdrive-v2', 'MagicDrive-V2'], ['dreamforge', 'DreamForge'], ['ours', 'MemOIR (Ours)']],
+      [['dreamforge', 'DreamForge'], ['magicdrive-v2', 'MagicDrive-V2'], ['ours', 'MemOIR (Ours)']],
     ],
   },
   'lyft-fullchunk': {
