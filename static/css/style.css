@@ -534,3 +534,6 @@ footer .anon { font-family: var(--font-mono); letter-spacing: .14em; text-transf
 .slot.is-contain .slot-media video { object-fit: contain; background: #000; }
 .note { margin: 14px 0 0; max-width: 92ch; padding: 10px 14px; border-left: 3px solid var(--line-2); background: var(--surface-2); color: var(--ink-2); font-size: 15px; line-height: 1.55; }
 .note b { color: var(--ink); font-weight: 600; }
+/* frame-rate note as a footnote under 1.1 */
+.note.footnote-note { margin: 12px 0 0; padding: 0 0 0 12px; border-left: 2px solid var(--line-2); background: none; color: var(--muted); font-size: 13.5px; }
+.note.footnote-note b { color: var(--ink-2); }
