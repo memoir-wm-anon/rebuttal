@@ -7,65 +7,54 @@
   <title>MemOIR · Rebuttal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@1,9..144,500;1,9..144,600&family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
   <link rel="stylesheet" href="static/css/style.css">
 </head>
 <body>
 
 <!-- ============================================================ HERO -->
-<header class="hero slim">
+<header class="hero plain">
   <div class="wrap">
-    <div class="hero-top">
-      <span class="brand">MemOIR</span>
-      <span class="hero-meta">Rebuttal · Video Results</span>
-    </div>
-    <p class="wordmark">MemOIR</p>
-    <h1 class="hero-title">Driving Video Generation from View-Space Blocks World with Object-Level Memory</h1>
-    <p class="hero-note">Video results for the author response. Videos in each block play in sync; use the tabs to switch between scenes.</p>
+    <h1 class="hero-title">MemOIR: Driving Video Generation from View-Space Blocks World with Object-Level Memory</h1>
+    <p class="hero-note">Rebuttal video results. Videos in each block play in sync; use the tabs to switch between scenes.</p>
   </div>
 </header>
 
 <nav class="toc" aria-label="Sections">
   <div class="wrap">
-    <a href="#robustness">Robustness</a>
-    <a href="#beyond-vehicles">Beyond Vehicles</a>
-    <a href="#other-backbone">Other Backbone</a>
-    <a href="#zero-shot">Zero-Shot Lyft</a>
-    <a href="#single-image">Single Image</a>
+    <a href="#robustness">1. Robustness</a>
+    <a href="#beyond-vehicles">2. Beyond Vehicles</a>
+    <a href="#other-backbone">3. Wan2.1-VACE</a>
+    <a href="#zero-shot">4. Zero-Shot Lyft</a>
+    <a href="#single-image">5. Single Image</a>
   </div>
 </nav>
 
 <!-- ============================================================ 01 ROBUSTNESS -->
 <section class="section" id="robustness">
   <div class="wrap">
-    <div class="sec-head compact">
-      <p class="kicker"><span class="kn">01</span> Robustness</p>
-      <h2 class="sec-title">Robust to <em>noisy</em> boxes and identities.</h2>
-    </div>
+    <h2 class="sec-title">1. Robustness to Noisy Inputs</h2>
 
-    <h3 class="sub">Noisy Box Conditions</h3>
+    <h3 class="sub">1.1 Noisy Box Conditions</h3>
     <p class="desc">nuScenes validation scenes with one target vehicle's box jittered or dropped in random frames: MemOIR still renders a smooth, coherent vehicle along the underlying trajectory.</p>
     <div class="compare" data-set="noisy-boxes"></div>
 
-    <h3 class="sub">Identity Switch Within a Chunk</h3>
+    <h3 class="sub">1.2 Identity Switch Within a Chunk</h3>
     <p class="desc">A vehicle briefly leaves the frame and returns under a different instance ID in the same chunk; its appearance is preserved.</p>
     <div class="compare" data-set="id-switch"></div>
   </div>
 </section>
 
 <!-- ============================================================ 02 BEYOND VEHICLES -->
-<section class="section bg" id="beyond-vehicles">
+<section class="section" id="beyond-vehicles">
   <div class="wrap">
-    <div class="sec-head compact">
-      <p class="kicker"><span class="kn">02</span> Beyond Vehicles</p>
-      <h2 class="sec-title">Instance memory for <em>pedestrians</em> and <em>buildings</em>.</h2>
-    </div>
+    <h2 class="sec-title">2. Instance Memory Beyond Vehicles</h2>
 
-    <h3 class="sub">Pedestrians: Forward–Reverse Revisit</h3>
+    <h3 class="sub">2.1 Pedestrians: Forward–Reverse Revisit</h3>
     <p class="desc">Zero-shot Lyft L5: the second chunk replays the drive in reverse, so every pedestrian is revisited; with memory they keep the appearance they first had.</p>
     <div class="compare" data-set="revisit-pedestrians"></div>
 
-    <h3 class="sub">Buildings: Forward–Reverse Revisit</h3>
+    <h3 class="sub">2.2 Buildings: Forward–Reverse Revisit</h3>
     <p class="desc">The same protocol for buildings: without memory, facade details such as windows change after the chunk boundary; with memory they are restored.</p>
     <div class="compare" data-set="revisit-buildings"></div>
   </div>
@@ -74,34 +63,28 @@
 <!-- ============================================================ 03 OTHER BACKBONE -->
 <section class="section" id="other-backbone">
   <div class="wrap">
-    <div class="sec-head compact">
-      <p class="kicker"><span class="kn">03</span> Other Backbone</p>
-      <h2 class="sec-title">The same memory on <em>Wan2.1-VACE</em>, beyond driving.</h2>
-    </div>
+    <h2 class="sec-title">3. Instance Memory on Wan2.1-VACE</h2>
 
-    <h3 class="sub">Faces (CelebV-HQ)</h3>
+    <h3 class="sub">3.1 Faces (CelebV-HQ)</h3>
     <p class="desc">The chunk boundary falls mid-turn, while the face is hidden; the frontal face in the next chunk can only come from memory.</p>
     <div class="compare" data-set="wan-faces"></div>
 
-    <h3 class="sub">Pedestrians (WalkingTours)</h3>
+    <h3 class="sub">3.2 Pedestrians (WalkingTours)</h3>
     <p class="desc">The chunk boundary falls while the person is out of view; with memory, the returning person is regenerated with the same identity.</p>
     <div class="compare" data-set="wan-pedestrians"></div>
   </div>
 </section>
 
 <!-- ============================================================ 04 ZERO-SHOT LYFT -->
-<section class="section bg" id="zero-shot">
+<section class="section" id="zero-shot">
   <div class="wrap">
-    <div class="sec-head compact">
-      <p class="kicker"><span class="kn">04</span> Zero-Shot Lyft L5</p>
-      <h2 class="sec-title">Input-matched comparison on an <em>unseen</em> dataset.</h2>
-    </div>
+    <h2 class="sec-title">4. Zero-Shot Comparison on Lyft L5</h2>
 
-    <h3 class="sub">Same Initial Frame for Every Method</h3>
+    <h3 class="sub">4.1 Same Initial Frame for Every Method</h3>
     <p class="desc">15.4 s generations on Lyft L5, which no method saw in training; every method receives the same real initial frame.</p>
     <div class="compare" data-set="lyft-matched"></div>
 
-    <h3 class="sub">Full-Chunk Fine-Tuning</h3>
+    <h3 class="sub">4.2 Full-Chunk Fine-Tuning</h3>
     <p class="desc">Fine-tuning on full 93-frame chunks instead of 25-frame clips removes the drift in later frames of each chunk.</p>
     <div class="compare" data-set="lyft-fullchunk"></div>
   </div>
@@ -110,16 +93,13 @@
 <!-- ============================================================ 05 SINGLE IMAGE -->
 <section class="section" id="single-image">
   <div class="wrap">
-    <div class="sec-head compact">
-      <p class="kicker"><span class="kn">05</span> Single Image</p>
-      <h2 class="sec-title">A full blocks world from <em>one image</em>.</h2>
-    </div>
+    <h2 class="sec-title">5. Blocks World from a Single Image</h2>
 
-    <h3 class="sub">Automatic Construction</h3>
+    <h3 class="sub">5.1 Automatic Construction</h3>
     <p class="desc">From a single RGB image, with off-the-shelf models only and no annotations, maps or LiDAR, to an editable blocks world and the generated video.</p>
     <div class="compare" data-set="single-image"></div>
 
-    <h3 class="sub">Agent Refinement</h3>
+    <h3 class="sub">5.2 Agent Refinement</h3>
     <p class="desc">An LLM agent compares the rendered world with the image, corrects buildings, and adds missing structures before generation.</p>
     <div class="compare" data-set="agent-refine"></div>
   </div>

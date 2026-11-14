@@ -496,3 +496,12 @@ footer .wrap { display: flex; justify-content: center; }
 
 footer .anon { font-family: var(--font-mono); letter-spacing: .14em; text-transform: uppercase; font-size: 11px; }
 .slot-media img { position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block; }
+
+/* bland overrides (user 11-14): no gradients, no italics, plain numbered headings */
+.hero.plain { padding-block: clamp(40px, 6vw, 64px) clamp(36px, 5vw, 56px); background: none; }
+.hero.plain .hero-title { max-width: none; font-size: clamp(24px, 2.8vw, 34px); font-weight: 700; }
+.hero.plain .hero-note { margin-top: 12px; color: var(--muted); font-size: 16px; }
+.section { padding-block: clamp(40px, 5vw, 64px); }
+.section .sec-title { font-size: clamp(22px, 2.4vw, 28px); line-height: 1.25; letter-spacing: -.015em; }
+.section .sub, .section .sub:first-of-type { margin: clamp(28px, 3.5vw, 40px) 0 6px; font-size: 18px; font-weight: 600; letter-spacing: 0; }
+.sec-title em { font-family: inherit; font-style: normal; color: inherit; }
