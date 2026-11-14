@@ -61,8 +61,8 @@ const SETS = {
     dir: 'videos/lyft/matched',
     tabs: scenes(3),
     rows: [
-      [['condition', 'Blocks-World Condition'], ['real', 'Real Video'], ['ours', 'MemOIR (Ours)']],
-      [['magicdrive-v2', 'MagicDrive-V2 (+ initial frame)'], ['dreamforge', 'DreamForge (+ initial frame)']],
+      [['condition', 'Blocks-World Condition'], ['real', 'Real Video']],
+      [['magicdrive-v2', 'MagicDrive-V2'], ['dreamforge', 'DreamForge'], ['ours', 'MemOIR (Ours)']],
     ],
   },
   'lyft-fullchunk': {
@@ -249,9 +249,12 @@ function buildCompare(root) {
 
     const panel = el('div', 'panel', { role: 'tabpanel' });
     panel.hidden = i !== 0;
-    for (const row of tab.rows || set.rows) {
+    const rows = tab.rows || set.rows;
+    const ncol = Math.max(...rows.map(r => r.length));
+    for (const row of rows) {
       const r = el('div', 'grid-row');
-      r.style.setProperty('--n', row.length);
+      r.style.setProperty('--n', ncol);
+      r.style.setProperty('--k', row.length);
       for (const [key, label, ext = 'mp4'] of row) {
         const fig = el('figure', 'slot' + (key.startsWith('ours') ? ' is-ours' : ''));
         const src = `${set.dir}/${tab.id}/${key}.${ext}`;
