@@ -251,7 +251,7 @@ function buildCompare(root) {
       r.style.setProperty('--n', ncol);
       r.style.setProperty('--k', row.length);
       for (const [key, label, ext = 'mp4'] of row) {
-        const fig = el('figure', 'slot' + (key.startsWith('ours') ? ' is-ours' : ''));
+        const fig = el('figure', 'slot' + (key.startsWith('ours') ? ' is-ours' : '') + ((set.contain || []).includes(key) ? ' is-contain' : ''));
         const src = `${set.dir}/${tab.id}/${key}.${ext}`;
         fig.dataset.src = src;
         fig.dataset.kind = ext === 'mp4' ? 'video' : 'image';

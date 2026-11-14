@@ -531,3 +531,4 @@ footer .anon { font-family: var(--font-mono); letter-spacing: .14em; text-transf
 /* subtitle under the paper title (user 11-14) */
 .hero-sub { margin: 14px 0 0; color: var(--accent-ink); font-size: clamp(20px, 2.3vw, 28px); font-weight: 600; letter-spacing: -.01em; line-height: 1.25; }
 .hero.plain .hero-note { margin-top: 10px; }
+.slot.is-contain .slot-media video { object-fit: contain; background: #000; }
