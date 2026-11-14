@@ -537,3 +537,6 @@ footer .anon { font-family: var(--font-mono); letter-spacing: .14em; text-transf
 /* frame-rate note as a footnote under 1.1 */
 .note.footnote-note { margin: 12px 0 0; padding: 0 0 0 12px; border-left: 2px solid var(--line-2); background: none; color: var(--muted); font-size: 13.5px; }
 .note.footnote-note b { color: var(--ink-2); }
+/* deep links from the OpenReview rebuttal: headings land below the sticky nav (~44px) */
+html { scroll-padding-top: 0; }
+section[id], h3[id] { scroll-margin-top: 60px; }

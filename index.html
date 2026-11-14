@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="static/css/style.css?v=202611141102">
+  <link rel="stylesheet" href="static/css/style.css?v=202611141536">
 </head>
 <body>
 
@@ -34,12 +34,12 @@
   <div class="wrap">
     <h2 class="sec-title">1. Input-matched comparison on Lyft L5 (zero-shot)</h2>
 
-    <h3 class="sub">1.1 Comparison with matched inputs</h3>
+    <h3 class="sub" id="matched-comparison">1.1 Comparison with matched inputs</h3>
     <p class="desc">All methods receive the same real initial frame; 15.4 s generations (185 frames at 12 Hz).</p>
     <div class="compare" data-set="lyft-matched"></div>
     <p class="note footnote-note"><b>Frame rate.</b> Lyft L5 provides camera frames and 3D box annotations at 5 Hz. For all Lyft L5 videos on this page, we interpolate each instance's 3D box trajectory between its annotated keyframes to obtain smooth 12 Hz conditions, and every method generates 12 Hz video from them. The real video is shown at its native 5 Hz, with each frame held to match 12 Hz playback.</p>
 
-    <h3 class="sub">1.2 Quality over time with full-chunk fine-tuning</h3>
+    <h3 class="sub" id="matched-over-time">1.2 Quality over time with full-chunk fine-tuning</h3>
     <p class="desc">MemOIR fine-tuned on 25-frame clips and on full 93-frame chunks, with matched frame counts.</p>
     <div class="compare" data-set="lyft-fullchunk"></div>
   </div>
@@ -49,15 +49,15 @@
   <div class="wrap">
     <h2 class="sec-title">2. Consistency experiments</h2>
 
-    <h3 class="sub">2.1 Forward–reverse revisit consistency on Lyft L5 (zero-shot)</h3>
+    <h3 class="sub" id="consistency-revisit">2.1 Forward–reverse revisit consistency on Lyft L5 (zero-shot)</h3>
     <p class="desc">The first chunk drives forward; the second replays the ego and instance trajectories in reverse, so every pedestrian and building is revisited.</p>
     <div class="compare" data-set="revisit"></div>
 
-    <h3 class="sub">2.2 Pedestrian identity after re-entering the frame across the chunk boundary (WalkingTours, Wan2.1-VACE)</h3>
+    <h3 class="sub" id="consistency-pedestrian">2.2 Pedestrian identity after re-entering the frame across the chunk boundary (WalkingTours, Wan2.1-VACE)</h3>
     <p class="desc">The chunk boundary is placed while the target person is out of view.</p>
     <div class="compare" data-set="wan-pedestrians"></div>
 
-    <h3 class="sub">2.3 Face identity after a turn-away across the chunk boundary (CelebV-HQ, Wan2.1-VACE)</h3>
+    <h3 class="sub" id="consistency-face">2.3 Face identity after a turn-away across the chunk boundary (CelebV-HQ, Wan2.1-VACE)</h3>
     <p class="desc">The chunk boundary is placed mid-turn, when only the profile or the back of the head is visible.</p>
     <div class="compare" data-set="wan-faces"></div>
   </div>
@@ -67,11 +67,11 @@
   <div class="wrap">
     <h2 class="sec-title">3. Robustness experiments</h2>
 
-    <h3 class="sub">3.1 Noisy box conditioning (nuScenes)</h3>
+    <h3 class="sub" id="robustness-noisy-box">3.1 Noisy box conditioning (nuScenes)</h3>
     <p class="desc">One target vehicle per scene is perturbed in the conditioning canvas by location jitter (σ = 0.3 m per axis) or box dropout (30% of frames).</p>
     <div class="compare" data-set="noisy-boxes"></div>
 
-    <h3 class="sub">3.2 Identity switch within a chunk (nuScenes)</h3>
+    <h3 class="sub" id="robustness-id-switch">3.2 Identity switch within a chunk (nuScenes)</h3>
     <p class="desc">A vehicle briefly leaves the frame and returns with a different instance ID inside the same chunk.</p>
     <div class="compare" data-set="id-switch"></div>
   </div>
@@ -81,11 +81,11 @@
   <div class="wrap">
     <h2 class="sec-title">4. Blocks-world construction from a single image</h2>
 
-    <h3 class="sub">4.1 Automatic construction</h3>
+    <h3 class="sub" id="single-image-auto">4.1 Automatic construction</h3>
     <p class="desc">Input image, constructed blocks world and generated video; off-the-shelf models only, without annotations, maps or LiDAR.</p>
     <div class="compare" data-set="single-image"></div>
 
-    <h3 class="sub">4.2 LLM-agent refinement</h3>
+    <h3 class="sub" id="single-image-agent">4.2 LLM-agent refinement</h3>
     <p class="desc">Blocks world before and after closed-loop refinement by an LLM agent, and the generated video.</p>
     <div class="compare" data-set="agent-refine"></div>
   </div>
@@ -96,6 +96,6 @@
   </div>
 </footer>
 
-<script src="static/js/main.js?v=202611141102"></script>
+<script src="static/js/main.js?v=202611141536"></script>
 </body>
 </html>
