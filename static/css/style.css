@@ -532,3 +532,5 @@ footer .anon { font-family: var(--font-mono); letter-spacing: .14em; text-transf
 .hero-sub { margin: 14px 0 0; color: var(--accent-ink); font-size: clamp(20px, 2.3vw, 28px); font-weight: 600; letter-spacing: -.01em; line-height: 1.25; }
 .hero.plain .hero-note { margin-top: 10px; }
 .slot.is-contain .slot-media video { object-fit: contain; background: #000; }
+.note { margin: 14px 0 0; max-width: 92ch; padding: 10px 14px; border-left: 3px solid var(--line-2); background: var(--surface-2); color: var(--ink-2); font-size: 15px; line-height: 1.55; }
+.note b { color: var(--ink); font-weight: 600; }

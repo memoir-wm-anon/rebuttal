@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="static/css/style.css?v=202611141032">
+  <link rel="stylesheet" href="static/css/style.css?v=202611141052">
 </head>
 <body>
 
@@ -33,6 +33,7 @@
 <section class="section" id="matched">
   <div class="wrap">
     <h2 class="sec-title">1. Input-matched comparison on Lyft L5 (zero-shot)</h2>
+    <p class="note"><b>Frame rate.</b> Lyft L5 provides camera frames and 3D box annotations at 5 Hz. For all Lyft L5 videos on this page, we interpolate each instance's 3D box trajectory between its annotated keyframes to obtain smooth 12 Hz conditions, and every method generates 12 Hz video from them. The real video is shown at its native 5 Hz, with each frame held to match 12 Hz playback.</p>
 
     <h3 class="sub">1.1 Comparison with matched inputs</h3>
     <p class="desc">All methods receive the same real initial frame; 15.4 s generations (185 frames at 12 Hz).</p>
@@ -95,6 +96,6 @@
   </div>
 </footer>
 
-<script src="static/js/main.js?v=202611141032"></script>
+<script src="static/js/main.js?v=202611141052"></script>
 </body>
 </html>
