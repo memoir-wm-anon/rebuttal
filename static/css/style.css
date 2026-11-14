@@ -516,3 +516,11 @@ footer .anon { font-family: var(--font-mono); letter-spacing: .14em; text-transf
 @media (max-width: 720px) {
   .grid-row { grid-template-columns: repeat(min(var(--k, var(--n)), 2), calc((100% - 10px) / 2)); }
 }
+/* smaller headings, roomier rows (user 11-14) */
+.section .sec-title { font-size: 18px; font-weight: 650; }
+.section .sub, .section .sub:first-of-type { font-size: 15px; margin: 36px 0 4px; }
+.grid-row + .grid-row { margin-top: 28px; }
+.slot figcaption { margin-top: 9px; }
+.compare { padding: 22px; }
+.tabs { margin-bottom: 20px; }
+.sync { margin-top: 22px; }
