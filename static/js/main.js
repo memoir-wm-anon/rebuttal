@@ -337,3 +337,23 @@ function buildToc(nav) {
 
 document.querySelectorAll('.toc').forEach(buildToc);
 document.querySelectorAll('.compare').forEach(buildCompare);
+
+/* ---------- deep links: keep the #target heading in place while fonts / videos settle ---------- */
+
+function keepAnchor() {
+  const id = decodeURIComponent(location.hash.slice(1));
+  const target = id && document.getElementById(id);
+  if (!target) return;
+  let active = true;
+  const align = () => active && target.scrollIntoView({ behavior: 'instant', block: 'start' });
+  const stop = () => { active = false; ro.disconnect(); };
+  const ro = new ResizeObserver(align);
+  ro.observe(document.body);
+  ['wheel', 'touchstart', 'keydown', 'mousedown'].forEach(ev => window.addEventListener(ev, stop, { once: true, passive: true }));
+  if (document.fonts) document.fonts.ready.then(align);
+  window.addEventListener('load', align, { once: true });
+  align();
+  setTimeout(stop, 5000);
+}
+keepAnchor();
+window.addEventListener('hashchange', keepAnchor);
