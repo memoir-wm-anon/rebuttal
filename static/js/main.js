@@ -29,27 +29,22 @@ const SETS = {
   },
 
   /* 02 Instance memory beyond vehicles (Cosmos-Predict2.5, Lyft L5 zero-shot) */
-  'revisit-pedestrians': {
-    dir: 'videos/revisit/pedestrians',
-    tabs: scenes(3),
-    rows: [[['condition', 'Condition (Forward → Reverse)'], ['no-memory', 'Memory Off'], ['ours', 'Memory On (Ours)']]],
-  },
-  'revisit-buildings': {
-    dir: 'videos/revisit/buildings',
+  revisit: {
+    dir: 'videos/consistency/revisit',
     tabs: scenes(3),
     rows: [[['condition', 'Condition (Forward → Reverse)'], ['no-memory', 'Memory Off'], ['ours', 'Memory On (Ours)']]],
   },
 
   /* 03 Memory on another backbone (Wan2.1-VACE) */
   'wan-faces': {
-    dir: 'videos/wan/faces',
+    dir: 'videos/consistency/faces',
     aspect: '1 / 1',
     native: true,
     tabs: scenes(3),
     rows: [[['condition', 'Condition'], ['no-memory', 'Wan2.1-VACE (No Memory)'], ['ours', 'With Instance Memory (Ours)'], ['real', 'Ground Truth']]],
   },
   'wan-pedestrians': {
-    dir: 'videos/wan/pedestrians',
+    dir: 'videos/consistency/walkingtours',
     aspect: '16 / 9',
     native: true,
     tabs: scenes(3),

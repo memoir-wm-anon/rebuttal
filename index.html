@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="static/css/style.css?v=202611140947">
+  <link rel="stylesheet" href="static/css/style.css?v=202611140951">
 </head>
 <body>
 
@@ -22,95 +22,78 @@
 
 <nav class="toc" aria-label="Sections">
   <div class="wrap">
-    <a href="#robustness">1. Robustness</a>
-    <a href="#beyond-vehicles">2. Revisit consistency</a>
-    <a href="#other-backbone">3. Wan2.1-VACE</a>
-    <a href="#zero-shot">4. Matched inputs</a>
-    <a href="#single-image">5. Single image</a>
+    <a href="#matched">1. Matched inputs</a>
+    <a href="#consistency">2. Consistency</a>
+    <a href="#robustness">3. Robustness</a>
+    <a href="#single-image">4. Single image</a>
   </div>
 </nav>
 
-<!-- ============================================================ 01 ROBUSTNESS -->
-<section class="section" id="robustness">
+<section class="section" id="matched">
   <div class="wrap">
-    <h2 class="sec-title">1. Robustness to noisy conditioning and identity switches</h2>
+    <h2 class="sec-title">1. Input-matched comparison on Lyft L5 (zero-shot)</h2>
 
-    <h3 class="sub">1.1 Noisy box conditioning (nuScenes)</h3>
-    <p class="desc">One target vehicle per scene is perturbed in the conditioning canvas by location jitter (σ = 0.3 m per axis) or box dropout (30% of frames).</p>
-    <div class="compare" data-set="noisy-boxes"></div>
-
-    <h3 class="sub">1.2 Identity switch within a chunk (nuScenes)</h3>
-    <p class="desc">A vehicle briefly leaves the frame and returns with a different instance ID inside the same chunk.</p>
-    <div class="compare" data-set="id-switch"></div>
-  </div>
-</section>
-
-<!-- ============================================================ 02 BEYOND VEHICLES -->
-<section class="section" id="beyond-vehicles">
-  <div class="wrap">
-    <h2 class="sec-title">2. Forward–reverse revisit consistency on Lyft L5 (zero-shot)</h2>
-
-    <h3 class="sub">2.1 Pedestrians</h3>
-    <p class="desc">The first chunk drives forward; the second replays the ego and instance trajectories in reverse, so every pedestrian is revisited.</p>
-    <div class="compare" data-set="revisit-pedestrians"></div>
-
-    <h3 class="sub">2.2 Buildings</h3>
-    <p class="desc">Same protocol as 2.1, for buildings.</p>
-    <div class="compare" data-set="revisit-buildings"></div>
-  </div>
-</section>
-
-<!-- ============================================================ 03 OTHER BACKBONE -->
-<section class="section" id="other-backbone">
-  <div class="wrap">
-    <h2 class="sec-title">3. Instance-level KV memory on a different backbone (Wan2.1-VACE)</h2>
-
-    <h3 class="sub">3.1 Face identity after a turn-away across the chunk boundary (CelebV-HQ)</h3>
-    <p class="desc">The chunk boundary is placed mid-turn, when only the profile or the back of the head is visible.</p>
-    <div class="compare" data-set="wan-faces"></div>
-
-    <h3 class="sub">3.2 Pedestrian identity after re-entering the frame across the chunk boundary (WalkingTours)</h3>
-    <p class="desc">The chunk boundary is placed while the target person is out of view.</p>
-    <div class="compare" data-set="wan-pedestrians"></div>
-  </div>
-</section>
-
-<!-- ============================================================ 04 ZERO-SHOT LYFT -->
-<section class="section" id="zero-shot">
-  <div class="wrap">
-    <h2 class="sec-title">4. Input-matched comparison on Lyft L5 (zero-shot)</h2>
-
-    <h3 class="sub">4.1 Comparison with matched inputs</h3>
+    <h3 class="sub">1.1 Comparison with matched inputs</h3>
     <p class="desc">All methods receive the same real initial frame; 15.4 s generations (185 frames at 12 Hz).</p>
     <div class="compare" data-set="lyft-matched"></div>
 
-    <h3 class="sub">4.2 Quality over time with full-chunk fine-tuning</h3>
+    <h3 class="sub">1.2 Quality over time with full-chunk fine-tuning</h3>
     <p class="desc">MemOIR fine-tuned on 25-frame clips and on full 93-frame chunks, with matched frame counts.</p>
     <div class="compare" data-set="lyft-fullchunk"></div>
   </div>
 </section>
 
-<!-- ============================================================ 05 SINGLE IMAGE -->
+<section class="section" id="consistency">
+  <div class="wrap">
+    <h2 class="sec-title">2. Consistency experiments</h2>
+
+    <h3 class="sub">2.1 Forward–reverse revisit consistency on Lyft L5 (zero-shot)</h3>
+    <p class="desc">The first chunk drives forward; the second replays the ego and instance trajectories in reverse, so every pedestrian and building is revisited.</p>
+    <div class="compare" data-set="revisit"></div>
+
+    <h3 class="sub">2.2 Face identity after a turn-away across the chunk boundary (CelebV-HQ, Wan2.1-VACE)</h3>
+    <p class="desc">The chunk boundary is placed mid-turn, when only the profile or the back of the head is visible.</p>
+    <div class="compare" data-set="wan-faces"></div>
+
+    <h3 class="sub">2.3 Pedestrian identity after re-entering the frame across the chunk boundary (WalkingTours, Wan2.1-VACE)</h3>
+    <p class="desc">The chunk boundary is placed while the target person is out of view.</p>
+    <div class="compare" data-set="wan-pedestrians"></div>
+  </div>
+</section>
+
+<section class="section" id="robustness">
+  <div class="wrap">
+    <h2 class="sec-title">3. Robustness experiments</h2>
+
+    <h3 class="sub">3.1 Noisy box conditioning (nuScenes)</h3>
+    <p class="desc">One target vehicle per scene is perturbed in the conditioning canvas by location jitter (σ = 0.3 m per axis) or box dropout (30% of frames).</p>
+    <div class="compare" data-set="noisy-boxes"></div>
+
+    <h3 class="sub">3.2 Identity switch within a chunk (nuScenes)</h3>
+    <p class="desc">A vehicle briefly leaves the frame and returns with a different instance ID inside the same chunk.</p>
+    <div class="compare" data-set="id-switch"></div>
+  </div>
+</section>
+
 <section class="section" id="single-image">
   <div class="wrap">
-    <h2 class="sec-title">5. Blocks-world construction from a single image</h2>
+    <h2 class="sec-title">4. Blocks-world construction from a single image</h2>
 
-    <h3 class="sub">5.1 Automatic construction</h3>
+    <h3 class="sub">4.1 Automatic construction</h3>
     <p class="desc">Input image, constructed blocks world and generated video; off-the-shelf models only, without annotations, maps or LiDAR.</p>
     <div class="compare" data-set="single-image"></div>
 
-    <h3 class="sub">5.2 LLM-agent refinement</h3>
+    <h3 class="sub">4.2 LLM-agent refinement</h3>
     <p class="desc">Blocks world before and after closed-loop refinement by an LLM agent, and the generated video.</p>
     <div class="compare" data-set="agent-refine"></div>
   </div>
 </section>
-
 <footer>
   <div class="wrap">
     <span class="anon">Anonymous submission</span>
   </div>
 </footer>
 
-<script src="static/js/main.js?v=202611140947"></script>
+<script src="static/js/main.js?v=202611140951"></script>
 </body>
 </html>
