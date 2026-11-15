@@ -9,6 +9,8 @@
  * `native: true` to resize each slot to its video's own aspect once it loads.
  * Keys starting with `ours` are highlighted.
  */
+const MEDIA_V = '202611150744';   // appended to every video/image URL so a browser never shows a stale cached file
+
 const scenes = (n, prefix = 'scene') =>
   Array.from({ length: n }, (_, i) => ({ id: `${prefix}-0${i + 1}`, label: `Scene ${i + 1}` }));
 
@@ -258,7 +260,7 @@ function buildCompare(root) {
       r.style.setProperty('--k', row.length);
       for (const [key, label, ext = 'mp4'] of row) {
         const fig = el('figure', 'slot' + (key.startsWith('ours') ? ' is-ours' : '') + ((set.contain || []).includes(key) ? ' is-contain' : ''));
-        const src = `${set.dir}/${tab.id}/${key}.${ext}`;
+        const src = `${set.dir}/${tab.id}/${key}.${ext}?v=${MEDIA_V}`;
         fig.dataset.src = src;
         fig.dataset.kind = ext === 'mp4' ? 'video' : 'image';
         const media = el('div', 'slot-media');
