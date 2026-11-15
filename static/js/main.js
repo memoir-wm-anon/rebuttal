@@ -48,9 +48,8 @@ const SETS = {
     aspect: '53 / 30',
     tabs: [   // events: chunk boundary (target out of view) and the target's return, in seconds of the 15 fps timeline
       { id: 'scene-01', label: 'Scene 1', events: [{ t: 4.067, label: 'Chunk boundary' }, { t: 6.6, label: 'Return' }] },
-      { id: 'scene-02', label: 'Scene 2', events: [{ t: 4.4, label: 'Chunk boundary' }, { t: 6.333, label: 'Return' }] },
-      { id: 'scene-03', label: 'Scene 3', events: [{ t: 4.733, label: 'Chunk boundary' }, { t: 6.333, label: 'Return' }] },
-      { id: 'scene-04', label: 'Scene 4', events: [{ t: 3.067, label: 'Chunk boundary' }, { t: 4.2, label: 'Return' }] },
+      { id: 'scene-02', label: 'Scene 2', events: [{ t: 4.733, label: 'Chunk boundary' }, { t: 6.333, label: 'Return' }] },
+      { id: 'scene-03', label: 'Scene 3', events: [{ t: 3.067, label: 'Chunk boundary' }, { t: 4.2, label: 'Return' }] },
     ],
     rows: [
       [['condition', 'Condition (Depth)'], ['real', 'Real Video']],
