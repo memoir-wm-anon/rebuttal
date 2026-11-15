@@ -540,3 +540,5 @@ footer .anon { font-family: var(--font-mono); letter-spacing: .14em; text-transf
 /* deep links from the OpenReview rebuttal: headings land below the sticky nav (~44px) */
 html { scroll-padding-top: 0; }
 section[id], h3[id] { scroll-margin-top: 60px; }
+.desc .c1 { color: #2f7fe0; font-weight: 600; }
+.desc .c2 { color: #d9761a; font-weight: 600; }
