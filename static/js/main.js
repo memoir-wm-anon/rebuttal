@@ -41,7 +41,7 @@ const SETS = {
     aspect: '1 / 1',
     native: true,
     tabs: scenes(3),
-    rows: [[['condition', 'Condition'], ['no-memory', 'Wan2.1-VACE (No Memory)'], ['ours', 'With Instance Memory (Ours)'], ['real', 'Ground Truth']]],
+    rows: [[['condition', 'Condition'], ['real', 'Real Video'], ['no-memory', 'Wan2.1-VACE (No Memory)'], ['ours', 'With Instance Memory (Ours)']]],
   },
   'wan-pedestrians': {
     dir: 'videos/consistency/walkingtours',
