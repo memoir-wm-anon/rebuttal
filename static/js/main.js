@@ -9,7 +9,7 @@
  * `native: true` to resize each slot to its video's own aspect once it loads.
  * Keys starting with `ours` are highlighted.
  */
-const MEDIA_V = '202611160640';   // appended to every video/image URL so a browser never shows a stale cached file
+const MEDIA_V = '202611160709';   // appended to every video/image URL so a browser never shows a stale cached file
 
 const scenes = (n, prefix = 'scene') =>
   Array.from({ length: n }, (_, i) => ({ id: `${prefix}-0${i + 1}`, label: `Scene ${i + 1}` }));
@@ -38,9 +38,9 @@ const SETS = {
   revisit: {
     dir: 'videos/consistency/revisit',
     tabs: [   // events: start of the reverse replay (frame 93) at each clip's native fps
-      { id: 'scene-01', label: 'Scene 1', events: [{ t: 9.3, label: 'Reverse' }] },
+      { id: 'scene-01', label: 'Scene 1', events: [{ t: 7.75, label: 'Reverse' }] },
       { id: 'scene-02', label: 'Scene 2', events: [{ t: 9.3, label: 'Reverse' }] },
-      { id: 'scene-03', label: 'Scene 3', events: [{ t: 7.75, label: 'Reverse' }] },
+      { id: 'scene-03', label: 'Scene 3', events: [{ t: 9.3, label: 'Reverse' }] },
       { id: 'scene-04', label: 'Scene 4', events: [{ t: 7.75, label: 'Reverse' }] },
     ],
     rows: [[['real', 'Real Video'], ['no-memory', 'No Memory'], ['ours', 'With Instance Memory (Ours)']]],
