@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="static/css/style.css?v=202611161343">
+  <link rel="stylesheet" href="static/css/style.css?v=202611161345">
 </head>
 <body>
 
@@ -67,11 +67,11 @@
   <div class="wrap">
     <h2 class="sec-title">3. Robustness experiments</h2>
 
-    <h3 class="sub" id="robustness-noisy-box">3.1 Noisy box conditioning (nuScenes)</h3>
+    <h3 class="sub" id="robustness-noisy-box">3.1 Noisy box conditioning</h3>
     <p class="desc">One target vehicle per scene is perturbed in the conditioning canvas by location jitter (σ = 0.3 m per axis) or box dropout (30% of frames).</p>
     <div class="compare" data-set="noisy-boxes"></div>
 
-    <h3 class="sub" id="robustness-id-switch">3.2 Identity switch within a chunk (nuScenes)</h3>
+    <h3 class="sub" id="robustness-id-switch">3.2 Identity switch within a chunk</h3>
     <p class="desc">The ego vehicle swerves until the target vehicle has almost left the frame; when it comes back, its box carries a new instance ID within the same chunk. The control keeps the original ID. While almost fully visible, the target is outlined in <span class="c1">blue</span> with its original ID and in <span class="c2">orange</span> with the new ID.</p>
     <div class="compare" data-set="id-switch"></div>
   </div>
@@ -96,6 +96,6 @@
   </div>
 </footer>
 
-<script src="static/js/main.js?v=202611161343"></script>
+<script src="static/js/main.js?v=202611161345"></script>
 </body>
 </html>
