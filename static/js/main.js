@@ -9,7 +9,7 @@
  * `native: true` to resize each slot to its video's own aspect once it loads.
  * Keys starting with `ours` are highlighted.
  */
-const MEDIA_V = '202611161259';   // appended to every video/image URL so a browser never shows a stale cached file
+const MEDIA_V = '202611161327';   // appended to every video/image URL so a browser never shows a stale cached file
 
 const scenes = (n, prefix = 'scene') =>
   Array.from({ length: n }, (_, i) => ({ id: `${prefix}-0${i + 1}`, label: `Scene ${i + 1}` }));
@@ -18,7 +18,7 @@ const SETS = {
   /* 01 Robustness */
   'noisy-boxes': {
     dir: 'videos/robustness/noisy-boxes',
-    tabs: scenes(3),
+    tabs: scenes(5),
     rows: [
       [['condition', 'Clean Condition'], ['condition-jitter', 'Jittered Boxes (σ = 0.3 m)'], ['condition-dropout', 'Flickering Boxes (30% dropped)']],
       [['ours', 'MemOIR · Clean'], ['ours-jitter', 'MemOIR · Jittered'], ['ours-dropout', 'MemOIR · Flickering']],
