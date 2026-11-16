@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600&display=swap">
-  <link rel="stylesheet" href="static/css/style.css?v=202611160542">
+  <link rel="stylesheet" href="static/css/style.css?v=202611160557">
 </head>
 <body>
 
@@ -49,8 +49,8 @@
   <div class="wrap">
     <h2 class="sec-title">2. Consistency experiments</h2>
 
-    <h3 class="sub" id="consistency-revisit">2.1 Forward–reverse revisit consistency on Lyft L5 (zero-shot)</h3>
-    <p class="desc">The first chunk drives forward; the second replays the ego and instance trajectories in reverse, so every pedestrian and building is revisited.</p>
+    <h3 class="sub" id="consistency-revisit">2.1 Forward–reverse revisit consistency</h3>
+    <p class="desc">Argoverse 2 (Scenes 1–2) and Lyft L5 (Scenes 3–4). The first chunk drives forward; the second replays the ego and instance trajectories in reverse, so every instance is revisited. In Scenes 2 and 3, revisited instances are outlined in <span class="c1">blue</span> on the way out and in <span class="c2">orange</span> on the way back.</p>
     <div class="compare" data-set="revisit"></div>
 
     <h3 class="sub" id="consistency-pedestrian">2.2 Pedestrian identity after re-entering the frame across the chunk boundary (WalkingTours, Wan2.1-VACE)</h3>
@@ -96,6 +96,6 @@
   </div>
 </footer>
 
-<script src="static/js/main.js?v=202611160542"></script>
+<script src="static/js/main.js?v=202611160557"></script>
 </body>
 </html>
