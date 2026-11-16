@@ -9,7 +9,7 @@
  * `native: true` to resize each slot to its video's own aspect once it loads.
  * Keys starting with `ours` are highlighted.
  */
-const MEDIA_V = '202611160808';   // appended to every video/image URL so a browser never shows a stale cached file
+const MEDIA_V = '202611161210';   // appended to every video/image URL so a browser never shows a stale cached file
 
 const scenes = (n, prefix = 'scene') =>
   Array.from({ length: n }, (_, i) => ({ id: `${prefix}-0${i + 1}`, label: `Scene ${i + 1}` }));
@@ -49,10 +49,15 @@ const SETS = {
   /* 03 Memory on another backbone (Wan2.1-VACE) */
   'wan-faces': {
     dir: 'videos/consistency/faces',
-    aspect: '1 / 1',
-    native: true,
-    tabs: scenes(3),
-    rows: [[['condition', 'Condition'], ['real', 'Real Video'], ['no-memory', 'Wan2.1-VACE (No Memory)'], ['ours', 'With Instance Memory (Ours)']]],
+    aspect: '64 / 61',
+    tabs: [   // user 11-16: CelebV-HQ faces ckpt 8000; events: chunk 2 starts at frame 81 (native fps)
+      { id: 'scene-01', label: 'Scene 1', events: [{ t: 3.24, label: 'Chunk boundary' }] },
+      { id: 'scene-02', label: 'Scene 2', events: [{ t: 3.378, label: 'Chunk boundary' }] },
+      { id: 'scene-03', label: 'Scene 3', events: [{ t: 1.35, label: 'Chunk boundary' }] },
+      { id: 'scene-04', label: 'Scene 4', events: [{ t: 2.703, label: 'Chunk boundary' }] },
+      { id: 'scene-05', label: 'Scene 5', events: [{ t: 3.378, label: 'Chunk boundary' }] },
+    ],
+    rows: [[['condition', 'Condition (Pose)'], ['real', 'Real Video'], ['no-memory', 'Wan2.1-VACE (Naive)'], ['ours', 'With Instance Memory (Ours)']]],
   },
   'wan-pedestrians': {
     dir: 'videos/consistency/walkingtours',
