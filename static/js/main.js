@@ -9,7 +9,7 @@
  * `native: true` to resize each slot to its video's own aspect once it loads.
  * Keys starting with `ours` are highlighted.
  */
-const MEDIA_V = '202611160714';   // appended to every video/image URL so a browser never shows a stale cached file
+const MEDIA_V = '202611160808';   // appended to every video/image URL so a browser never shows a stale cached file
 
 const scenes = (n, prefix = 'scene') =>
   Array.from({ length: n }, (_, i) => ({ id: `${prefix}-0${i + 1}`, label: `Scene ${i + 1}` }));
@@ -71,7 +71,7 @@ const SETS = {
   /* 04 Zero-shot Lyft L5 */
   'lyft-matched': {
     dir: 'videos/lyft/matched',
-    tabs: scenes(10),   // user 11-16: 3 original + 7 diverse Lyft scenes; ours = f61 it2000 (= 80-scene table)
+    tabs: scenes(8),   // user 11-16: 8 Lyft scenes (rebuttal_build/lyft_matched8.txt order); ours = f61 it2000 (= 80-scene table)
     rows: [
       [['condition', 'Blocks-World Condition'], ['real', 'Real Video']],
       [['dreamforge', 'DreamForge'], ['magicdrive-v2', 'MagicDrive-V2'], ['ours', 'MemOIR (Ours)']],
