@@ -9,7 +9,7 @@
  * `native: true` to resize each slot to its video's own aspect once it loads.
  * Keys starting with `ours` are highlighted.
  */
-const MEDIA_V = '202611160617';   // appended to every video/image URL so a browser never shows a stale cached file
+const MEDIA_V = '202611160640';   // appended to every video/image URL so a browser never shows a stale cached file
 
 const scenes = (n, prefix = 'scene') =>
   Array.from({ length: n }, (_, i) => ({ id: `${prefix}-0${i + 1}`, label: `Scene ${i + 1}` }));
@@ -29,7 +29,7 @@ const SETS = {
     tabs: [   // events: frame at which the target's box gets a new instance ID (12 fps)
       { id: 'scene-01', label: 'Scene 1', events: [{ t: 3.333, label: 'ID change' }] },
       { id: 'scene-02', label: 'Scene 2', events: [{ t: 3.333, label: 'ID change' }] },
-      { id: 'scene-03', label: 'Scene 3', events: [{ t: 3.833, label: 'ID change' }] },
+      { id: 'scene-03', label: 'Scene 3', events: [{ t: 3.167, label: 'ID change' }] },
     ],
     rows: [[['condition', 'Condition (Box ID Changes)'], ['control', 'MemOIR, Same ID (Control)'], ['ours', 'MemOIR, ID Changed (Ours)']]],
   },
