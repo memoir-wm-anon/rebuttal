@@ -9,7 +9,7 @@
  * `native: true` to resize each slot to its video's own aspect once it loads.
  * Keys starting with `ours` are highlighted.
  */
-const MEDIA_V = '202611161230';   // appended to every video/image URL so a browser never shows a stale cached file
+const MEDIA_V = '202611161232';   // appended to every video/image URL so a browser never shows a stale cached file
 
 const scenes = (n, prefix = 'scene') =>
   Array.from({ length: n }, (_, i) => ({ id: `${prefix}-0${i + 1}`, label: `Scene ${i + 1}` }));
@@ -91,8 +91,9 @@ const SETS = {
   /* 05 Blocks world from a single image */
   'single-image': {
     dir: 'videos/single-image/automatic',
-    tabs: scenes(3),
-    rows: [[['input', 'Input Image', 'jpg'], ['world', 'Constructed Blocks World'], ['ours', 'Generated Video']]],
+    aspect: '16 / 9',
+    tabs: scenes(3),   // user 11-16: one full-width construction timelapse per scene (AV2 ed6ad297, AV2 389069d7, Waymo 7331965)
+    rows: [[['construction', 'Automatic Construction from a Single Image']]],
   },
   'agent-refine': {
     dir: 'videos/single-image/agent',
