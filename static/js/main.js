@@ -9,7 +9,7 @@
  * `native: true` to resize each slot to its video's own aspect once it loads.
  * Keys starting with `ours` are highlighted.
  */
-const MEDIA_V = '202611161354';   // appended to every video/image URL so a browser never shows a stale cached file
+const MEDIA_V = '202611161501';   // appended to every video/image URL so a browser never shows a stale cached file
 
 const scenes = (n, prefix = 'scene') =>
   Array.from({ length: n }, (_, i) => ({ id: `${prefix}-0${i + 1}`, label: `Scene ${i + 1}` }));
@@ -100,6 +100,11 @@ const SETS = {
     aspect: '16 / 9',
     tabs: scenes(1),   // user 11-16: one full-width closed-loop agent timelapse (AV2 ed6ad297, same scene as 4.1 Scene 1)
     rows: [[['construction', 'LLM-Agent Refinement from a Single Image']]],
+  },
+  'agent-drive': {
+    dir: 'videos/single-image/agent-drive',
+    tabs: scenes(1),   // user 11-16: MemOIR drive through the agent-refined world (f61 it2000, first frame = initial image)
+    rows: [[['condition', 'Blocks-World Condition'], ['ours', 'MemOIR (Ours)']]],
   },
 };
 
