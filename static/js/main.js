@@ -9,7 +9,7 @@
  * `native: true` to resize each slot to its video's own aspect once it loads.
  * Keys starting with `ours` are highlighted.
  */
-const MEDIA_V = '202611161210';   // appended to every video/image URL so a browser never shows a stale cached file
+const MEDIA_V = '202611161225';   // appended to every video/image URL so a browser never shows a stale cached file
 
 const scenes = (n, prefix = 'scene') =>
   Array.from({ length: n }, (_, i) => ({ id: `${prefix}-0${i + 1}`, label: `Scene ${i + 1}` }));
@@ -79,7 +79,7 @@ const SETS = {
     tabs: scenes(8),   // user 11-16: 8 Lyft scenes (rebuttal_build/lyft_matched8.txt order); ours = f61 it2000 (= 80-scene table)
     rows: [
       [['condition', 'Blocks-World Condition'], ['real', 'Real Video']],
-      [['dreamforge', 'DreamForge'], ['magicdrive-v2', 'MagicDrive-V2'], ['ours', 'MemOIR (Ours)']],
+      [['dreamforge', 'DreamForge'], ['magicdrive-v2', 'MagicDrive-V2'], ['ours-noff', 'MemOIR (Ours, No Initial Frame)'], ['ours', 'MemOIR (Ours)']],
     ],
   },
   'lyft-fullchunk': {
