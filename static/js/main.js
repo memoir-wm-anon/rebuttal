@@ -9,7 +9,7 @@
  * `native: true` to resize each slot to its video's own aspect once it loads.
  * Keys starting with `ours` are highlighted.
  */
-const MEDIA_V = '202611170329';   // appended to every video/image URL so a browser never shows a stale cached file
+const MEDIA_V = '202611201703';   // appended to every video/image URL so a browser never shows a stale cached file
 
 const scenes = (n, prefix = 'scene') =>
   Array.from({ length: n }, (_, i) => ({ id: `${prefix}-0${i + 1}`, label: `Scene ${i + 1}` }));
@@ -126,12 +126,19 @@ function placeholder(label, src) {
   return ph;
 }
 
-function makeVideo(src, onReady) {
+function makeVideo(src, onReady, poster) {
   const v = el('video');
+  // muted + playsinline as attributes, and play() called at once (SyncGroup.add): phone browsers (iOS Safari)
+  // ignore preload and fetch nothing until play() is called, so waiting for 'loadeddata' first never starts them.
   v.muted = true;
+  v.defaultMuted = true;
+  v.setAttribute('muted', '');
   v.loop = true;
   v.playsInline = true;
+  v.setAttribute('playsinline', '');
+  v.setAttribute('webkit-playsinline', '');
   v.preload = 'auto';
+  if (poster) v.poster = poster;   // first frame, shown instantly while the video streams
   v.addEventListener('loadeddata', onReady, { once: true });
   v.src = src;
   return v;
@@ -175,6 +182,7 @@ class SyncGroup {
   add(v) {
     this.videos.push(v);
     v.playbackRate = this.rate;
+    if (this.playing && this.visible) v.play().catch(() => {});   // starts the download now on phones
     v.addEventListener('loadeddata', () => {
       const m = this.master;
       if (m && m !== v) v.currentTime = m.currentTime;
@@ -194,7 +202,8 @@ class SyncGroup {
     if (isFinite(m.duration)) this.range.value = (m.currentTime / m.duration) * 1000;
     this.time.textContent = `${fmt(m.currentTime)} / ${fmt(m.duration)}`;
     for (const v of this.videos) {
-      if (v !== m && v.readyState >= 2 && Math.abs(v.currentTime - m.currentTime) > 0.1) {
+      // only re-sync videos that have data ahead (readyState 3+): seeking one that is still buffering restarts its download
+      if (v !== m && v.readyState >= 3 && Math.abs(v.currentTime - m.currentTime) > 0.1) {
         v.currentTime = m.currentTime;
       }
     }
@@ -204,7 +213,7 @@ class SyncGroup {
     this.playing = true;
     this.btn.textContent = '❚❚';
     this.btn.setAttribute('aria-label', 'Pause');
-    this.videos.forEach(v => v.readyState >= 2 && v.play().catch(() => {}));
+    this.videos.forEach(v => v.play().catch(() => {}));
   }
 
   pause() {
@@ -280,6 +289,7 @@ function buildCompare(root) {
         const fig = el('figure', 'slot' + (key.startsWith('ours') ? ' is-ours' : '') + ((set.contain || []).includes(key) ? ' is-contain' : ''));
         const src = `${set.dir}/${tab.id}/${key}.${ext}?v=${MEDIA_V}`;
         fig.dataset.src = src;
+        if (ext === 'mp4') fig.dataset.poster = `${set.dir}/${tab.id}/${key}.poster.jpg?v=${MEDIA_V}`;
         fig.dataset.kind = ext === 'mp4' ? 'video' : 'image';
         const media = el('div', 'slot-media');
         media.append(placeholder(label, src));
@@ -322,8 +332,12 @@ function buildCompare(root) {
           fig.classList.add('is-loaded');
           if (set.native && v.videoWidth) fig.style.setProperty('--aspect', `${v.videoWidth} / ${v.videoHeight}`);
           if (tab.events && v === group.master) group.setEvents(tab.events, v.duration);
-        });
+        }, fig.dataset.poster);
         fig.querySelector('.slot-media').prepend(v);
+        // show the first-frame poster as soon as it arrives instead of the placeholder
+        const pimg = new Image();
+        pimg.onload = () => fig.classList.add('is-loaded');
+        pimg.src = fig.dataset.poster;
       }
       group.add(v);
     });
@@ -332,15 +346,18 @@ function buildCompare(root) {
 
   root.append(tabs, panels, bar);
 
-  // Load the first tab only once the block scrolls near the viewport.
+  // Load the first tab once the block scrolls near the viewport; the page's first block starts at once.
   let started = false;
+  const start = () => {
+    if (started) return;
+    started = true;
+    group.visible = true;
+    activate(0);
+  };
+  if (root === document.querySelector('.compare')) start();
   new IntersectionObserver(entries => {
     for (const e of entries) {
-      if (e.isIntersecting && !started) {
-        started = true;
-        group.visible = true;
-        activate(0);
-      }
+      if (e.isIntersecting) start();
       group.setVisible(e.isIntersecting);
     }
   }, { rootMargin: '200px 0px' }).observe(root);
